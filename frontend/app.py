@@ -13,7 +13,7 @@ def message1():
 
 @app.route('/message2', methods=['GET'])
 def message2():
-    api = requests.get('http://api:5000/')
+    api = requests.get('http://localhost:5000/')
     message = api.json()
     return jsonify(message)
 

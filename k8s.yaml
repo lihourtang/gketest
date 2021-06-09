@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1 
+kind: Deployment
+metadata:
+  name: multicontainer-gke-deployment 
+  labels:
+    app: multicontainer-gke 
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: api 
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      containers:
+      - name: frontend
+        image: gcr.io/pclagke/api:v1
+        ports: 
+        - containerPort: 80
+      - name: api
+        image: gcr.io/pclagke/frontend:v1 
+        ports: 
+        - containerPort: 5000
